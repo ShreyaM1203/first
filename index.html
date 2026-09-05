@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Special Surprise For You ❤️</title>
+
+<style>
+
+/* ==============================
+   GENERAL
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: #000;
+}
+
+
+/* ==============================
+   PASSWORD PAGE
+================================ */
+
+#passwordPage {
+    min-height: 100vh;
+    background: #a90000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+}
+
+.password-container {
+    width: 90%;
+    max-width: 850px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 70px;
+    flex-wrap: wrap;
+}
+
+
+/* FIRST PHOTO */
+
+.photo-frame {
+    position: relative;
+}
+
+.first-photo {
+    width: 330px;
+    height: 330px;
+
+    object-fit: cover;
+
+    border: 12px solid white;
+}
+
+
+/* BOW */
+
+.bow {
+    position: absolute;
+    top: -50px;
+    right: -40px;
+
+    font-size: 80px;
+}
+
+
+/* PASSWORD */
+
+.keypad-area {
+    text-align: center;
+}
+
+.keypad-area h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+
+/* PASSWORD BOXES */
+
+.password-boxes {
+    display: flex;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.pass-box {
+    width: 50px;
+    height: 55px;
+
+    border: 4px solid white;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+/* KEYPAD */
+
+.keypad {
+    display: grid;
+
+    grid-template-columns: repeat(3, 65px);
+
+    gap: 12px;
+
+    justify-content: center;
+}
+
+.key {
+    width: 65px;
+    height: 65px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #a90000;
+
+    font-size: 25px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.key:hover {
+    transform: scale(1.08);
+}
+
+.key:active {
+    transform: scale(0.92);
+}
+
+
+/* WRONG PASSWORD */
+
+#error {
+    display: none;
+
+    margin-top: 15px;
+
+    color: #ffd6d6;
+}
+
+
+/* ==============================
+   MESSAGE PAGE
+================================ */
+
+#messagePage {
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    background: linear-gradient(
+        135deg,
+        #ffd6f6,
+        #e6d5ff,
+        #d7f0ff,
+        #ffe0f0
+    );
+
+    background-size: 400% 400%;
+
+    animation: backgroundChange 12s ease infinite;
+
+    color: #35123d;
+}
+
+
+/* BACKGROUND COLOR CHANGING */
+
+@keyframes backgroundChange {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 50% 100%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 50% 0%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* HEADING */
+
+.title {
+    font-size: 42px;
+
+    margin-bottom: 35px;
+
+    animation: titleColor 5s infinite alternate;
+}
+
+
+/* TITLE COLOR CHANGING */
+
+@keyframes titleColor {
+
+    0% {
+        color: #d62878;
+    }
+
+    25% {
+        color: #7b2cbf;
+    }
+
+    50% {
+        color: #006d77;
+    }
+
+    75% {
+        color: #e85d04;
+    }
+
+    100% {
+        color: #c9184a;
+    }
+
+}
+
+
+/* HEARTS */
+
+.heart {
+    position: fixed;
+
+    font-size: 25px;
+
+    animation: floatHeart 6s linear infinite;
+
+    opacity: 0.7;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+}
+
+
+/* MESSAGE BOX */
+
+.message-box {
+
+    max-width: 900px;
+
+    min-height: 300px;
+
+    margin: auto;
+
+    padding: 35px;
+
+    background: rgba(255,255,255,0.75);
+
+    border-radius: 25px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    backdrop-filter: blur(10px);
+
+    text-align: left;
+}
+
+
+/* TYPING MESSAGE */
+
+#messageText {
+
+    font-size: 20px;
+
+    line-height: 1.8;
+
+    white-space: pre-line;
+
+}
+
+
+/* CURSOR */
+
+#cursor {
+
+    display: inline-block;
+
+    width: 3px;
+
+    height: 23px;
+
+    background: #7b2cbf;
+
+    animation: blink 0.7s infinite;
+
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+
+}
+
+
+/* SECOND PHOTO */
+
+.second-photo {
+
+    display: block;
+
+    width: 300px;
+
+    max-width: 90%;
+
+    margin: 35px auto 0;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+
+/* MUSIC BUTTON */
+
+.music-button {
+
+    margin-top: 25px;
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #7b2cbf;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 600px) {
+
+    .first-photo {
+        width: 240px;
+        height: 240px;
+    }
+
+    .password-container {
+        gap: 40px;
+    }
+
+    .title {
+        font-size: 30px;
+    }
+
+    .message-box {
+        padding: 22px;
+    }
+
+    #messageText {
+        font-size: 17px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     PASSWORD PAGE
+================================================== -->
+
+<section id="passwordPage">
+
+    <div class="password-container">
+
+
+        <!-- ==========================================
+             FIRST PHOTO
+             CHANGE photo1.jpg TO YOUR FIRST PHOTO
+        =========================================== -->
+
+        <div class="photo-frame">
+
+            <img
+                src="photo1.jpg"
+                class="first-photo"
+                alt="Our Memory"
+            >
+
+            <div class="bow">
+                🎀
+            </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="keypad-area">
+
+            <h2>Entre a passcode</h2>
+
+
+            <div class="password-boxes">
+
+                <div class="pass-box" id="box1"></div>
+
+                <div class="pass-box" id="box2"></div>
+
+                <div class="pass-box" id="box3"></div>
+
+                <div class="pass-box" id="box4"></div>
+
+            </div>
+
+
+            <div class="keypad">
+
+                <button class="key" onclick="enterNumber('1')">1</button>
+                <button class="key" onclick="enterNumber('2')">2</button>
+                <button class="key" onclick="enterNumber('3')">3</button>
+
+                <button class="key" onclick="enterNumber('4')">4</button>
+                <button class="key" onclick="enterNumber('5')">5</button>
+                <button class="key" onclick="enterNumber('6')">6</button>
+
+                <button class="key" onclick="enterNumber('7')">7</button>
+                <button class="key" onclick="enterNumber('8')">8</button>
+                <button class="key" onclick="enterNumber('9')">9</button>
+
+                <button class="key" onclick="clearPassword()">×</button>
+
+                <button class="key" onclick="enterNumber('0')">0</button>
+
+                <button class="key" onclick="checkPassword()">#</button>
+
+            </div>
+
+
+            <p id="error">
+                Wrong password 💭
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     MESSAGE PAGE
+================================================== -->
+
+<section id="messagePage">
+
+
+    <!-- TITLE -->
+
+    <h1 class="title">
+        ❤️ For My Babu ❤️
+    </h1>
+
+
+    <!-- MESSAGE -->
+
+    <div class="message-box">
+
+        <p id="messageText"></p>
+
+        <span id="cursor"></span>
+
+
+        <!-- ==========================================
+             SECOND PHOTO
+             CHANGE photo2.jpg TO YOUR OTHER PHOTO
+        =========================================== -->
+
+        <img
+            src="photo2.jpg"
+            class="second-photo"
+            alt="Our Memory"
+        >
+
+    </div>
+
+
+    <!-- MUSIC -->
+
+    <audio id="backgroundMusic" loop>
+
+        <!-- ==========================================
+             PUT YOUR MUSIC FILE NAME HERE
+        =========================================== -->
+
+        <source src="music.mp3" type="audio/mpeg">
+
+    </audio>
+
+
+    <button
+        class="music-button"
+        onclick="toggleMusic()"
+        id="musicButton"
+    >
+        🔊 Music
+    </button>
+
+
+</section>
+
+
+
+<script>
+
+
+/* ==================================================
+   PASSWORD
+================================================== */
+
+
+/* THIS IS YOUR CORRECT PASSWORD */
+
+const correctPassword = "1203";
+
+
+let enteredPassword = "";
+
+
+/* ENTER NUMBER */
+
+function enterNumber(number) {
+
+    if (enteredPassword.length < 4) {
+
+        enteredPassword += number;
+
+        updatePasswordBoxes();
+
+    }
+
+}
+
+
+/* SHOW NUMBERS */
+
+function updatePasswordBoxes() {
+
+    for(let i = 1; i <= 4; i++) {
+
+        document.getElementById("box" + i).innerText =
+            enteredPassword[i - 1] || "";
+
+    }
+
+}
+
+
+/* CLEAR */
+
+function clearPassword() {
+
+    enteredPassword = "";
+
+    updatePasswordBoxes();
+
+    document.getElementById("error").style.display = "none";
+
+}
+
+
+/* CHECK PASSWORD */
+
+function checkPassword() {
+
+    if(enteredPassword === correctPassword) {
+
+        /* HIDE PASSWORD PAGE */
+
+        document.getElementById("passwordPage").style.display = "none";
+
+
+        /* SHOW MESSAGE PAGE */
+
+        document.getElementById("messagePage").style.display = "block";
+
+
+        /* START TYPING */
+
+        typeMessage();
+
+
+        /* START MUSIC */
+
+        const music =
+            document.getElementById("backgroundMusic");
+
+        music.play().catch(function() {
+
+            console.log("Music needs user interaction.");
+
+        });
+
+    }
+
+    else {
+
+        document.getElementById("error").style.display = "block";
+
+    }
+
+}
+
+
+
+/* ==================================================
+   YOUR MESSAGE
+================================================== */
+
+
+/*
+   WRITE YOUR MESSAGE INSIDE THE BACKTICKS BELOW.
+
+   You can write as much as you want.
+*/
+
+const message = `Mera Babu ❤️
+
+Mujhe na taklif ho isliye woh apni taklif bhula ke mera dyan rakhta hai..
+me har bar bolti hu ki mujhe koi nhi samajta but reality yeh hai ki wahi mujhe merse jyada mujhe samjata hai..
+uska hat dukhe pair dukhe sir dukhe ya woh kitna bhi bimar kyu na ho mere aage woh sab chod ke woh mera khyal rakhta hai..
+eak din uska hat dukh rha tha bhaut fir bhi usne mujhe bola de tera bag me uthata hu
+mene bola usse ki mat tera hat bhi dukh rha hai lekin woh bola ki nhi ab nhi dukh rha
+jab mene usse bola thik hai apna hat move karke dikhaa toh usne apna hat pura move kiya 
+aur uske shakal pe eak bhi esa expression usne nhi dikhaya ki usse dard ho rha hai but
+fir bhi mujhe feel hua ki usse dukh rha lekin mujhe kya pata tha woh mere liye juth bol rha hai 🙃... 
+aur mera bag leke chal pada bus isliye taki mujhe dikkat na ho mera toh sirf pet dukh rha tha
+aur woh toh har mahine dukhta hai lekin woh ladka apna pain bhulake mere pain le leta hai...
+woh bimar bhi hota hai toh bhi woh clg aata hai sirf uski jaan ke liye ( woh sirf me hu♥️)
+halaki kuch chize mujhe uski irritating lagti hai but woh kabhi nhi laga.. 
+mujhe yahi lagta tha ki koi ladka itna accha nhi hota but jab se me usse mili hu mera pura perception change ho gaya hai...
+uske jesa ladka mene aaj tak nhi dekha 😌 ( beautiful soul, beautiful mind everything is beautiful in him expect him😘)...
+Usse har chiz ki knowledge hai aur isse bat ka mujhe sabse jayada proud hai
+ki uske pass bakio se jayda knowledge hai halaki woh dikhata nhi kuch... Uski planning bhi bhaut mst hoti hai ...
+mujhe lagta hai aagr me uski jagah pe hoti aur aagr koi ladki merse sath esa karti jesa me uske sath toh me itna nhi seh pati...
+pata nhi woh kese seh leta hai mujhe..kabhi puchungi usse😅 itna tolerate karta kese  hai mujhe woh...
+Mene usse itna sikha hai ki aur usse mera itna sath diya hai chahe koi ho ya na ho but woh mere sath hamesha rehta hai...
+Bus kuch chize hai jo thik nhi lagti mujhe lekin koi bhi insaan perfect nhi hota hai ...
+Lekin woh bakio se bhaut aalag hai.. woh sirf mere sath comfortable hai yeh mera proudness hai uske liye 😌
+woh mera painkiller hai💊❤️‍🩹... Uske andar bhaut qualities hai woh logo ki help karta hai, ladkiyo ki respect karta hai, 
+na baki ladko jesa hai.. sach bolu toh compare bhi nhi karna chahiye unse but
+kya karu usse  aache ladke bhi nhi hai jisse me uski qualities ki barabari kar saku...
+Jiska role modals hi Chatrapati ho toh woh ladka kesa hoga...wese toh kisi bhi chiz ka gurur nhi hona chahiye 
+lekin mujhe hai woh bhi mere jannu pe😌.. bus apni dosti kabhi na mite...
+Bhagwan se bola tha mujhe esa dost chahiye jo mujhe samjhe,jo bakio se ekdum aalag ho,
+intelligent ho, aur mera ho bakio se woh eak dum different baneks rehta hai 
+but mere sath woh apne real comfort me hota hai 😌 woh mujhe har time guide karta hai.. 
+khud sab bhul ke woh mere problems solve karta hai 🫠  ghar ka sabse bada beta hai mera janu... 
+Uski responsibilities bhi bhaut jyadi hai aur isliye uska tension bhi... 
+Lekin fir bhi woh meri choti moti problems sunta hai mujhe kehta hai tu mat tension le me huna😭 ..
+aur woh esa ladka nhi hai jo sirf bole woh esa hai ki woh ..woh chiz karke dikhaya hai...
+mujhe aaj tak utna comfortable kisi ke sath feel nhi hua jitna uske sath... Bhaut responsible hai woh..us
+se pata nhi hoga but woh best of the super best hai✨... Aur mene Aaj Tak jo bhi uske liye kiya hai woh mene dil se kiya hai
+chahe woh kuch bhi ho.. woh mera comfort place hai 😊
+jab bhi me uske sath hoti hu mujhe baki chizo ki koi parwah hi nhi hoti but uski parwah hoti hai😌..
+man karta hai usse galle se laga ke rakhu chodu hi naa lekin kya kare chodna padta hai 🤧
+mujhe sirf uske touch aache lagte hai 🫠 uski goad me apna sirf rakhne ka jo sukun hai woh kahi nhi hai...
+ab toh woh mera daily routine hai.. bakio ke samne woh jesa bhi rhe top of the top banke..
+but mere samne woh eak baccha ban jata hai (mujhe yeh bhaut cute lagta hai)🫠
+kabhi zidd karega toh kabhi pyar se bat karega aur ussi me mujhe usse pareshan karne me maza aata hai 😁
+usse bol bol ke pareshan kar deti hu😅😂 bichara🥲.. lekin yeh sirf mera hak hai 😌 me hi usse pareshan kar sakti hu baki koi nhi
+😁woh mera horsiii hai mera januu hai meraa sonaa hai meraa sab kuch hai 😌
+sabse main woh sirf mera best friend hai sirf mera💯 aur me uski😌... 
+Bus eak chiz hai woh tension me hota hai toh mujhe bhaut bura lagta hai.. 
+woh bhaut strong hai koi uska kuch nhi ukkad sakta😌... Mera janu🫠
+jab tak me uske sath hu tab tak me uska khayal rakhungi...😌 Aur aage bhi rakhungi..
+bhale duri kyu na ho kisi bhi karan se... uske sare sapne pure ho...
+khud ke liye usne utne sapne nhi dekhe jitne bakio ke liye 😊🫂
+uske sath har paal bitaye hue mere sabse anokh paal hai... ✨
+Dur kabhi nhi houngi usse yeh bat toh pakki hai 😊
+kyuki woh toh mera sabse pehla Dil hai ♥️
+
+
+/* ==================================================
+   TYPING EFFECT
+================================================== */
+
+let messageIndex = 0;
+
+
+function typeMessage() {
+
+    if(messageIndex < message.length) {
+
+        document.getElementById("messageText").innerText +=
+            message.charAt(messageIndex);
+
+        messageIndex++;
+
+        setTimeout(typeMessage, 45);
+
+    }
+
+}
+
+
+
+/* ==================================================
+   MUSIC
+================================================== */
+
+function toggleMusic() {
+
+    const music =
+        document.getElementById("backgroundMusic");
+
+    const button =
+        document.getElementById("musicButton");
+
+
+    if(music.paused) {
+
+        music.play();
+
+        button.innerText = "🔊 Music ON";
+
+    }
+
+    else {
+
+        music.pause();
+
+        button.innerText = "🔇 Music OFF";
+
+    }
+
+}
+
+
+
+/* ==================================================
+   FLOATING HEARTS
+================================================== */
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerText = "❤️";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    document.getElementById("messagePage")
+        .appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 9000);
+
+}
+
+
+setInterval(createHeart, 1200);
+
+
+</script>
+
+</body>
+</html>
