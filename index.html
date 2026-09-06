@@ -273,6 +273,35 @@ body {
     pointer-events:none;
     z-index: 10px;
 }
+   .teddy {
+    position: fixed;
+    bottom: -50px;
+    font-size: 30px;
+    animation: floatTeddy 7s linear forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes floatTeddy {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-50vh) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(-10deg);
+        opacity: 0;
+    }
+}
 
 @keyframes floatHeart {
 
@@ -808,6 +837,24 @@ function createHeart() {
 
 setInterval(createHeart, 500);
 
+   function createTeddy() {
+    const teddy = document.createElement("div");
+
+    teddy.innerHTML = "🧸";
+    teddy.classList.add("teddy");
+
+    teddy.style.left = Math.random() * 100 + "vw";
+    teddy.style.fontSize = (25 + Math.random() * 20) + "px";
+    teddy.style.animationDuration = (5 + Math.random() * 3) + "s";
+
+    document.getElementById("messagePage").appendChild(teddy);
+
+    setTimeout(() => {
+        teddy.remove();
+    }, 8000);
+}
+
+setInterval(createTeddy, 1200);
 
 </script>
 
