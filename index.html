@@ -326,7 +326,9 @@ body {
 
     line-height: 1.8;
 
-    white-space: pre-line;
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
 
 }
 
@@ -533,9 +535,10 @@ body {
 
     <div class="message-box">
 
-        <p id="messageText"></p>
+        <p id="messageText">
 
         <span id="cursor"></span>
+      </p>
 
 
         <!-- ==========================================
@@ -759,7 +762,7 @@ function typeMessage() {
 
     if(messageIndex < message.length) {
 
-        document.getElementById("messageText").innerText +=
+        document.getElementById("messageText").textContent +=
             message.charAt(messageIndex);
 
         messageIndex++;
