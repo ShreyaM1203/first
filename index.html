@@ -281,6 +281,48 @@ body {
     pointer-events: none;
     z-index: 10;
 }
+   [1:47 pm, 6/9/2026] IT'S MEE: function createTeddy() {
+    const teddy = document.createElement("div");
+
+    teddy.innerHTML = "🧸";
+    teddy.classList.add("teddy");
+
+    teddy.style.left = Math.random() * 100 + "vw";
+    teddy.style.fontSize = (25 + Math.random() * 20) + "px";
+    teddy.style.animationDuration = (5 + Math.random() * 3) + "s";
+
+    document.getElementById("messagePage").appendChild(teddy);
+
+    setTimeout(() => {
+        teddy.remove();
+    }, 8000);
+}
+
+setInterval(createTeddy, 1200);
+[2:01 pm, 6/9/2026] IT'S MEE: .kiss {
+    position: fixed;
+    bottom: -50px;
+    font-size: 28px;
+    animation: floatKiss 6s linear forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes floatKiss {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(15deg);
+        opacity: 0;
+    }
+}
 
 @keyframes floatTeddy {
     0% {
@@ -855,6 +897,24 @@ setInterval(createHeart, 500);
 }
 
 setInterval(createTeddy, 1200);
+   function createKiss() {
+    const kiss = document.createElement("div");
+
+    kiss.innerHTML = "💋";
+    kiss.classList.add("kiss");
+
+    kiss.style.left = Math.random() * 100 + "vw";
+    kiss.style.fontSize = (22 + Math.random() * 15) + "px";
+    kiss.style.animationDuration = (5 + Math.random() * 3) + "s";
+
+    document.getElementById("messagePage").appendChild(kiss);
+
+    setTimeout(() => {
+        kiss.remove();
+    }, 8000);
+}
+
+setInterval(createKiss, 1800);
 
 </script>
 
