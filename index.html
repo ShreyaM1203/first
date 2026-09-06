@@ -267,12 +267,11 @@ body {
 
 .heart {
     position: fixed;
-
+    bottom: 50px;
     font-size: 25px;
-
     animation: floatHeart 6s linear infinite;
-
-    opacity: 0.7;
+    pointer-events:none;
+    z-index: 10px;
 }
 
 @keyframes floatHeart {
@@ -792,7 +791,7 @@ function createHeart() {
         Math.random() * 100 + "vw";
 
     heart.style.animationDuration =
-        (4 + Math.random() * 5) + "s";
+        (4 + Math.random() * 3) + "s";
 
     document.getElementById("messagePage")
         .appendChild(heart);
@@ -807,7 +806,7 @@ function createHeart() {
 }
 
 
-setInterval(createHeart, 1200);
+setInterval(createHeart, 500);
 
 
 </script>
